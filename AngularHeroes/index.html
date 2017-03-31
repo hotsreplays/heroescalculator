@@ -1,0 +1,179 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <link rel="stylesheet" href="Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="Content/font-awesome.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="Scripts/jquery-3.1.1.js"></script>
+    <script src="Scripts/bootstrap.js"></script>
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/angular-route.js"></script>
+    <script src="Scripts/angular-ui/ui-bootstrap.js"></script>
+    <script src="Scripts/angular-ui/ui-bootstrap-tpls.js"></script>
+    <script src="App/App.js"></script>
+    <script src="App/HeroCalc.js"></script>
+    <script src="App/test.js"></script>
+</head>
+<body ng-app="HeroesApp">
+    <div class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="../" class="navbar-brand">HOTS Heroes Calculator</a>
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse" id="navbar-main">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Themes <span class="caret"></span></a>
+                        <ul class="dropdown-menu" aria-labelledby="themes">
+                            <li><a href="../default/">Default</a></li>
+                            <li class="divider"></li>
+                            <li><a href="../cerulean/">Cerulean</a></li>
+                            <li><a href="../cosmo/">Cosmo</a></li>
+                            <li><a href="../cyborg/">Cyborg</a></li>
+                            <li><a href="../darkly/">Darkly</a></li>
+                            <li><a href="../flatly/">Flatly</a></li>
+                            <li><a href="../journal/">Journal</a></li>
+                            <li><a href="../lumen/">Lumen</a></li>
+                            <li><a href="../paper/">Paper</a></li>
+                            <li><a href="../readable/">Readable</a></li>
+                            <li><a href="../sandstone/">Sandstone</a></li>
+                            <li><a href="../simplex/">Simplex</a></li>
+                            <li><a href="../slate/">Slate</a></li>
+                            <li><a href="../solar/">Solar</a></li>
+                            <li><a href="../spacelab/">Spacelab</a></li>
+                            <li><a href="../superhero/">Superhero</a></li>
+                            <li><a href="../united/">United</a></li>
+                            <li><a href="../yeti/">Yeti</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="../help/">Help</a>
+                    </li>
+                    <li>
+                        <a href="http://news.bootswatch.com">Blog</a>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://trello.com/" target="_blank"><span class="fa fa-trello"></span> Plan with Trello</a></li>
+                    <li><a href="https://github.com/hotsreplays" target="_blank"><span class="fa fa-github"></span> Contribute with Github</a></li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+    
+    <div class="container-fluid" ng-controller="heroCtrl as Ctrl">
+        <div class="row">
+            <div class="input-group">
+                <div class="input-group-btn">
+                    <button class="btn btn-warning" type="button" ng-click="Ctrl.filterClass('Warrior')">Warrior</button>
+                    <button class="btn btn-danger" type="button" ng-click="Ctrl.filterClass('Assassin')">Assassin</button>
+                    <button class="btn btn-success" type="button" ng-click="Ctrl.filterClass('Support')">Support</button>
+                    <button class="btn btn-info" type="button" ng-click="Ctrl.filterClass('Specialist')">Specialist</button>
+                    <button class="btn btn-default" type="button" ng-click="Ctrl.filterClass('Multi')">Multi-Class</button>
+                </div>
+                <span class="input-group-addon" id="basic-addon1">Level {{Ctrl.lvl}}</span>
+                <input type="text" class="form-control" placeholder="Type a level" aria-describedby="type a level" ng-model="Ctrl.lvl" ng-change="Ctrl.change()">
+                <div class="input-group-btn">
+                    <button class="btn btn-default" type="button" ng-click="Ctrl.lvlChange(1)">1</button>
+                    <button class="btn btn-default" type="button" ng-click="Ctrl.lvlChange(4)">4</button>
+                    <button class="btn btn-default" type="button" ng-click="Ctrl.lvlChange(7)">7</button>
+                    <button class="btn btn-default" type="button" ng-click="Ctrl.lvlChange(10)">10</button>
+                    <button class="btn btn-default" type="button" ng-click="Ctrl.lvlChange(13)">13</button>
+                    <button class="btn btn-default" type="button" ng-click="Ctrl.lvlChange(16)">16</button>
+                    <button class="btn btn-default" type="button" ng-click="Ctrl.lvlChange(20)">20</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">           
+                <div>
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th class="active">
+                                    <a href="#" ng-click="Ctrl.sortType = 'Name'; Ctrl.sortReverse = !Ctrl.sortReverse">Name</a>
+                                    <span ng-show="Ctrl.sortType == 'Name' && !Ctrl.sortReverse" class="glyphicon glyphicon-chevron-down"></span>
+                                    <span ng-show="Ctrl.sortType == 'Name' && Ctrl.sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                                </th>
+                                <th class="warning">
+                                    <a href="#" ng-click="Ctrl.sortType = 'Health'; Ctrl.sortReverse = !Ctrl.sortReverse">Health</a>
+                                    <span ng-show="Ctrl.sortType == 'Health' && !Ctrl.sortReverse" class="glyphicon glyphicon-chevron-down"></span>
+                                    <span ng-show="Ctrl.sortType == 'Health' && Ctrl.sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                                    <span class="label label-default">Armour</span>
+                                </th>
+                                <th class="warning">
+                                    <a href="#" ng-click="Ctrl.sortType = 'HealthRegen'; Ctrl.sortReverse = !Ctrl.sortReverse">Regen</a>
+                                    <span ng-show="Ctrl.sortType == 'HealthRegen' && !Ctrl.sortReverse" class="glyphicon glyphicon-chevron-down"></span>
+                                    <span ng-show="Ctrl.sortType == 'HealthRegen' && Ctrl.sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                                </th>
+                                <th class="info">
+                                    <a href="#" ng-click="Ctrl.sortType = 'Mana'; Ctrl.sortReverse = !Ctrl.sortReverse">Mana</a>
+                                    <span ng-show="Ctrl.sortType == 'Mana' && !Ctrl.sortReverse" class="glyphicon glyphicon-chevron-down"></span>
+                                    <span ng-show="Ctrl.sortType == 'Mana' && Ctrl.sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                                </th>
+                                <th class="info">
+                                    <a href="#" ng-click="Ctrl.sortType = 'ManaRegen'; Ctrl.sortReverse = !Ctrl.sortReverse">Regen</a>
+                                    <span ng-show="Ctrl.sortType == 'ManaRegen' && !Ctrl.sortReverse" class="glyphicon glyphicon-chevron-down"></span>
+                                    <span ng-show="Ctrl.sortType == 'ManaRegen' && Ctrl.sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                                </th>
+                                <th class="danger">
+                                    <a href="#" ng-click="Ctrl.sortType = 'Damage'; Ctrl.sortReverse = !Ctrl.sortReverse">Damage</a>
+                                    <span ng-show="Ctrl.sortType == 'Damage' && !Ctrl.sortReverse" class="glyphicon glyphicon-chevron-down"></span>
+                                    <span ng-show="Ctrl.sortType == 'Damage' && Ctrl.sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                                </th>
+                                <th class="danger">
+                                    <a href="#" ng-click="Ctrl.sortType = 'AtkSpeed'; Ctrl.sortReverse = !Ctrl.sortReverse">Atk/Sec</a>
+                                    <span ng-show="Ctrl.sortType == 'AtkSpeed' && !Ctrl.sortReverse" class="glyphicon glyphicon-chevron-down"></span>
+                                    <span ng-show="Ctrl.sortType == 'AtkSpeed' && Ctrl.sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                                </th>
+                                <th class="danger">
+                                    <a href="#" ng-click="Ctrl.sortType = 'DPS'; Ctrl.sortReverse = !Ctrl.sortReverse">DPS</a>
+                                    <span ng-show="Ctrl.sortType == 'DPS' && !Ctrl.sortReverse" class="glyphicon glyphicon-chevron-down"></span>
+                                    <span ng-show="Ctrl.sortType == 'DPS' && Ctrl.sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                                    <span class="label label-danger">Burst</span>
+                                </th>
+                                <th class="danger">
+                                    <a href="#" ng-click="Ctrl.sortType = 'Range'; Ctrl.sortReverse = !Ctrl.sortReverse">Range</a>
+                                    <span ng-show="Ctrl.sortType == 'Range' && !Ctrl.sortReverse" class="glyphicon glyphicon-chevron-down"></span>
+                                    <span ng-show="Ctrl.sortType == 'Range' && Ctrl.sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                                </th>
+                                <th>(Q)</th>
+                                <th>(W)</th>
+                                <th>(E)</th>
+                                <th>(R)</th>
+                            </tr>
+                        </thead>
+                        <tbody ng-repeat="hero in Ctrl.heroList | orderBy:Ctrl.sortType:Ctrl.sortReverse | filter:{Class: Ctrl.ClassFilter} track by $index">
+                            <tr>
+                                <td class="{{hero.CSS}}">
+                                <button type="button" class="btn btn-default btn-xs" ng-click="Ctrl.deleteModal(hero)"><span class="glyphicon glyphicon-edit"></span></button> {{hero.Name}}
+                                </td>
+                                <td class="warning">{{hero.Health}}</td>
+                                <td class="warning">{{hero.HealthRegen}}</td>
+                                <td class="info">{{hero.Mana}}</td>
+                                <td class="info">{{hero.ManaRegen}}</td>
+                                <td class="danger">{{hero.Damage}}</td>
+                                <td class="danger">{{hero.AtkSpeed}}</td>
+                                <td class="danger">{{hero.DPS}} <span class="label label-danger">{{hero.DPS}}</span></td>
+                                <td class="danger">{{hero.Range}}</td>
+                                <td>Arcane Flare</td>
+                                <td>Polymorph</td>
+                                <td>Pixie Dust</td>
+                                <td>Emerald Wind</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>            
+        </div>
+        
+    </div>
+</body>
+</html>
