@@ -106,9 +106,60 @@ module HeroesApp {
         static $inject: string[] = ["$uibModalInstance", "hero"];
         private Title: string;
         private boxyText: string = "test body something";
+        private active: boolean = false;
+        private lvl1: string;
+        private lvl4: string;
+        private lvl7: string;
+        private lvl10: string;
+        private lvl13: string;
+        private lvl16: string;
+        private lvl20: string;
+
         constructor(private $uibModalInstance: ng.ui.bootstrap.IModalServiceInstance, private hero:Hero) {
             this.Title = hero.Name;
             
+        }
+
+        public reset(talents: Talent[]): void {
+            talents.forEach(x => x.active = false);
+            this.lvl1 = '';
+            this.lvl4 = '';
+            this.lvl7 = '';
+            this.lvl10 = '';
+            this.lvl13 = '';
+            this.lvl16 = '';
+            this.lvl20 = '';
+        }
+
+        public select(talent: Talent, talents: Talent[]): void {
+            talent.active = !talent.active;
+            //var obj = talents.filter(x => x.lvl == talent.lvl);
+            talents.filter(x => x.lvl == talent.lvl && x.Name !== talent.Name).forEach(x => x.active = false);
+            switch (talent.lvl) {
+                case 1:
+                    talent.active ? this.lvl1 = talent.Name : '';
+                    break;
+                case 4:
+                    talent.active ? this.lvl4 = talent.Name : '';
+                    break;
+                case 7:
+                    talent.active ? this.lvl7 = talent.Name : '';
+                    break;
+                case 10:
+                    talent.active ? this.lvl10 = talent.Name : '';
+                    break;
+                case 13:
+                    talent.active ? this.lvl13 = talent.Name : '';
+                    break;
+                case 16:
+                    talent.active ? this.lvl16 = talent.Name : '';
+                    break;
+                case 20:
+                    talent.active ? this.lvl20 = talent.Name : '';
+                    break;
+                default:
+                    break;
+            }
         }
 
     }
@@ -148,6 +199,13 @@ class Hero {
     readonly baseRange: number;
     get Range(): number { return this.baseRange; }
 
+    private skillQ: Skill;
+    private skillW: Skill;
+    private skillE: Skill;
+    private skillR: Skill;
+
+    private Talents: Talent[];
+
     constructor(Name: string, Class: string, baseHealth: number, baseHealthRegen: number, baseMana: number, baseManaRegen: number, baseAtkSpeed: number, baseDamage: number, baseRange:number ) {
         this.Name = Name;
         this.Class = Class;
@@ -158,6 +216,32 @@ class Hero {
         this.baseAtkSpeed = baseAtkSpeed;
         this.baseDamage = baseDamage;
         this.baseRange = baseRange;
+
+        this.skillQ = new Skill("Arcane Flare", 60, 8, "Skill Description");
+        this.skillW = new Skill("Polymorph", 50, 12, "Skill Description");
+        this.skillE = new Skill("Pixie Dust", 45, 10, "Skill Description");
+        this.skillR = new Skill("Emerald Wind", 120, 60, "Skill Description");
+        this.Talents = [
+            new Talent("Talent1", "Description", 1),
+            new Talent("Talent2", "Description", 1),
+            new Talent("Talent3", "Description", 1),
+            new Talent("Talent4", "Description", 1),
+            new Talent("Talent5", "Description", 20),
+            new Talent("Talent6", "Description", 20),
+            new Talent("Talent7", "Description", 20),
+            new Talent("Talent8", "Description", 4),
+            new Talent("Talent9", "Description", 4),
+            new Talent("Talent10", "Description", 7),
+            new Talent("Talent11", "Description", 7),
+            new Talent("Talent12", "Description", 10),
+            new Talent("Talent13", "Description", 10),
+            new Talent("Talent14", "Description", 13),
+            new Talent("Talent15", "Description", 13),
+            new Talent("Talent16", "Description", 13),
+            new Talent("Talent17", "Description", 16),
+            new Talent("Talent18", "Description", 16),
+            new Talent("Talent19", "Description", 16)
+        ];
     }
 }
 
@@ -166,20 +250,24 @@ class Skill {
     readonly Mana: number;
     readonly Cooldown: number;
     private Description: string;
+
+    constructor(Name: string, Mana: number, Cooldown: number, Description: string) {
+        this.Name = Name;
+        this.Mana = Mana;
+        this.Cooldown = Cooldown;
+        this.Description = Description;
+    }
 }
 
+class Talent {
+    readonly Name: string;
+    readonly Description: string;
+    readonly lvl: number;
+    public active: boolean = false;
 
-module HeroesApp {
-    "use strict";
-    var app = getModule();
-    class ModalDemoCtrl {
-
-        
-
-        constructor() {
-
-        }
-
+    constructor(Name: string, Description: string, lvl:number) {
+        this.Name = Name;
+        this.Description = Description;
+        this.lvl = lvl;
     }
-    app.controller("ModalDemoCtrl", ModalDemoCtrl);
 }

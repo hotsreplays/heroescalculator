@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script src="https://use.fontawesome.com/78127db476.js"></script>
-    <!--<link rel="stylesheet" href="style.css" />-->
+    <link rel="stylesheet" href="style.css" />
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
@@ -19,7 +19,7 @@
     <div class="navbar navbar-default">
         <div class="container">
             <div class="navbar-header">
-                <a href="../" class="navbar-brand">HOTS Heroes Calculator</a>
+                <a href="/" class="navbar-brand">HOTS Heroes Calculator</a>
                 <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -28,8 +28,8 @@
             </div>
             <div class="navbar-collapse collapse" id="navbar-main">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="https://trello.com/" target="_blank"><span class="fa fa-trello"></span> Request with Trello</a></li>
-                    <li><a href="https://github.com/hotsreplays" target="_blank"><span class="fa fa-github"></span> Contribute with Github</a></li>
+                    <li><a href="https://trello.com/b/OujLmEwL" target="_blank"><span class="fa fa-trello"></span> Request with Trello</a></li>
+                    <li><a href="https://github.com/hotsreplays/heroescalculator" target="_blank"><span class="fa fa-github"></span> Contribute with Github</a></li>
                 </ul>
 
             </div>
@@ -130,10 +130,10 @@
                                 <td class="danger">{{hero.AtkSpeed}}</td>
                                 <td class="danger">{{hero.DPS}} <span class="label label-danger">{{hero.DPS}}</span></td>
                                 <td class="danger">{{hero.Range}}</td>
-                                <td>Arcane Flare</td>
-                                <td>Polymorph</td>
-                                <td>Pixie Dust</td>
-                                <td>Emerald Wind</td>
+                                <td>{{hero.skillQ.Name}}</td>
+                                <td>{{hero.skillQ.Name}}</td>
+                                <td>{{hero.skillQ.Name}}</td>
+                                <td>{{hero.skillQ.Name}}</td>
                             </tr>
                         </tbody>
                     </table>

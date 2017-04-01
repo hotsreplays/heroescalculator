@@ -98,8 +98,49 @@ var HeroesApp;
             this.$uibModalInstance = $uibModalInstance;
             this.hero = hero;
             this.boxyText = "test body something";
+            this.active = false;
             this.Title = hero.Name;
         }
+        HeroDetails.prototype.reset = function (talents) {
+            talents.forEach(function (x) { return x.active = false; });
+            this.lvl1 = '';
+            this.lvl4 = '';
+            this.lvl7 = '';
+            this.lvl10 = '';
+            this.lvl13 = '';
+            this.lvl16 = '';
+            this.lvl20 = '';
+        };
+        HeroDetails.prototype.select = function (talent, talents) {
+            talent.active = !talent.active;
+            //var obj = talents.filter(x => x.lvl == talent.lvl);
+            talents.filter(function (x) { return x.lvl == talent.lvl && x.Name !== talent.Name; }).forEach(function (x) { return x.active = false; });
+            switch (talent.lvl) {
+                case 1:
+                    talent.active ? this.lvl1 = talent.Name : '';
+                    break;
+                case 4:
+                    talent.active ? this.lvl4 = talent.Name : '';
+                    break;
+                case 7:
+                    talent.active ? this.lvl7 = talent.Name : '';
+                    break;
+                case 10:
+                    talent.active ? this.lvl10 = talent.Name : '';
+                    break;
+                case 13:
+                    talent.active ? this.lvl13 = talent.Name : '';
+                    break;
+                case 16:
+                    talent.active ? this.lvl16 = talent.Name : '';
+                    break;
+                case 20:
+                    talent.active ? this.lvl20 = talent.Name : '';
+                    break;
+                default:
+                    break;
+            }
+        };
         return HeroDetails;
     }());
     HeroDetails.$inject = ["$uibModalInstance", "hero"];
@@ -118,6 +159,31 @@ var Hero = (function () {
         this.baseAtkSpeed = baseAtkSpeed;
         this.baseDamage = baseDamage;
         this.baseRange = baseRange;
+        this.skillQ = new Skill("Arcane Flare", 60, 8, "Skill Description");
+        this.skillW = new Skill("Polymorph", 50, 12, "Skill Description");
+        this.skillE = new Skill("Pixie Dust", 45, 10, "Skill Description");
+        this.skillR = new Skill("Emerald Wind", 120, 60, "Skill Description");
+        this.Talents = [
+            new Talent("Talent1", "Description", 1),
+            new Talent("Talent2", "Description", 1),
+            new Talent("Talent3", "Description", 1),
+            new Talent("Talent4", "Description", 1),
+            new Talent("Talent5", "Description", 20),
+            new Talent("Talent6", "Description", 20),
+            new Talent("Talent7", "Description", 20),
+            new Talent("Talent8", "Description", 4),
+            new Talent("Talent9", "Description", 4),
+            new Talent("Talent10", "Description", 7),
+            new Talent("Talent11", "Description", 7),
+            new Talent("Talent12", "Description", 10),
+            new Talent("Talent13", "Description", 10),
+            new Talent("Talent14", "Description", 13),
+            new Talent("Talent15", "Description", 13),
+            new Talent("Talent16", "Description", 13),
+            new Talent("Talent17", "Description", 16),
+            new Talent("Talent18", "Description", 16),
+            new Talent("Talent19", "Description", 16)
+        ];
     }
     Object.defineProperty(Hero.prototype, "test", {
         get: function () { return (this.baseHealth * Math.pow(1.04, this.lvl)).toFixed(2); },
@@ -179,18 +245,21 @@ var Hero = (function () {
     return Hero;
 }());
 var Skill = (function () {
-    function Skill() {
+    function Skill(Name, Mana, Cooldown, Description) {
+        this.Name = Name;
+        this.Mana = Mana;
+        this.Cooldown = Cooldown;
+        this.Description = Description;
     }
     return Skill;
 }());
-(function (HeroesApp) {
-    "use strict";
-    var app = HeroesApp.getModule();
-    var ModalDemoCtrl = (function () {
-        function ModalDemoCtrl() {
-        }
-        return ModalDemoCtrl;
-    }());
-    app.controller("ModalDemoCtrl", ModalDemoCtrl);
-})(HeroesApp || (HeroesApp = {}));
+var Talent = (function () {
+    function Talent(Name, Description, lvl) {
+        this.active = false;
+        this.Name = Name;
+        this.Description = Description;
+        this.lvl = lvl;
+    }
+    return Talent;
+}());
 //# sourceMappingURL=HeroCalc.js.map

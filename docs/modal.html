@@ -6,189 +6,85 @@
         <div class="row">
             <div class="col-md-4">
                 <p>
-                    Level 1
+                    Level 1<br />
+                    {{vm.lvl1}}
                 </p>
             </div>
-            <div class="col-md-2">
-                <p>
-                    2nd col 3
-                </p>
-            </div>
-            <div class="col-md-2">
-                <p>
-                    3rd col 3
-                </p>
-            </div>
-            <div class="col-md-2">
-                <p>
-                    4th col 3
-                </p>
-            </div>
-            <div class="col-md-2">
-                <p>
-                    5th col 3
-                </p>
+            <div class="col-md-2" ng-repeat="talent in vm.hero.Talents | filter: {lvl: 1} : true track by $index">
+                <img class="img-thumbnail" src="https://d1i1jxrdh2kvwy.cloudfront.net/Images/Talents/Invigoration.png" style="height:50px;width:50px;" ng-click="vm.select(talent, vm.hero.Talents)" ng-class="{ 'talentactive': talent.active }" />
             </div>
         </div>
         <div class="row">
             <div class="col-md-4">
                 <p>
-                    Level 4
+                    Level 4<br />
+                    {{vm.lvl4}}
                 </p>
             </div>
-            <div class="col-md-2">
-                <p>
-                    2nd col 3
-                </p>
-            </div>
-            <div class="col-md-2">
-                <p>
-                    3rd col 3
-                </p>
-            </div>
-            <div class="col-md-2">
-                <p>
-                    4th col 3
-                </p>
-            </div>
-            <div class="col-md-2">
-                <p>
-                    5th col 3
-                </p>
+            <div class="col-md-2" ng-repeat="talent in vm.hero.Talents | filter:{lvl: 4} : true  track by $index">
+                <img class="img-thumbnail" src="https://d1i1jxrdh2kvwy.cloudfront.net/Images/Talents/Invigoration.png" style="height:50px;width:50px;" ng-click="vm.select(talent, vm.hero.Talents)" ng-class="{ 'talentactive': talent.active }" />
             </div>
         </div>
         <div class="row">
             <div class="col-md-4">
                 <p>
-                    Level 7
+                    Level 7<br />
+                    {{vm.lvl7}}
                 </p>
             </div>
-            <div class="col-md-2">
-                <p>
-                    2nd col 3
-                </p>
-            </div>
-            <div class="col-md-2">
-                <p>
-                    3rd col 3
-                </p>
-            </div>
-            <div class="col-md-2">
-                <p>
-                    4th col 3
-                </p>
-            </div>
-            <div class="col-md-2">
-                <p>
-                    5th col 3
-                </p>
+            <div class="col-md-2" ng-repeat="talent in vm.hero.Talents | filter:{lvl: 7} : true  track by $index">
+                <img class="img-thumbnail" src="https://d1i1jxrdh2kvwy.cloudfront.net/Images/Talents/Invigoration.png" style="height:50px;width:50px;" ng-click="vm.select(talent, vm.hero.Talents)" ng-class="{ 'talentactive': talent.active }" />
             </div>
         </div>
         <div class="row">
             <div class="col-md-4">
                 <p>
-                    Level 10
+                    Level 10<br />
+                    {{vm.lvl10}}
                 </p>
             </div>
-            <div class="col-md-2">
-                <p>
-                    2nd col 3
-                </p>
-            </div>
-            <div class="col-md-2">
-                <p>
-                    3rd col 3
-                </p>
-            </div>
-            <div class="col-md-2">
-                <p>
-                    4th col 3
-                </p>
-            </div>
-            <div class="col-md-2">
-                <p>
-                    5th col 3
-                </p>
+            <div class="col-md-2" ng-repeat="talent in vm.hero.Talents | filter:{lvl: 10} : true  track by $index">
+                <img class="img-thumbnail" src="https://d1i1jxrdh2kvwy.cloudfront.net/Images/Talents/Invigoration.png" style="height:50px;width:50px;" ng-click="vm.select(talent, vm.hero.Talents)" ng-class="{ 'talentactive': talent.active }" />
             </div>
         </div>
         <div class="row">
             <div class="col-md-4">
                 <p>
-                    Level 13
+                    Level 13<br />
+                    {{vm.lvl13}}
                 </p>
             </div>
-            <div class="col-md-2">
-                <p>
-                    2nd col 3
-                </p>
-            </div>
-            <div class="col-md-2">
-                <p>
-                    3rd col 3
-                </p>
-            </div>
-            <div class="col-md-2">
-                <p>
-                    4th col 3
-                </p>
-            </div>
-            <div class="col-md-2">
-                <p>
-                    5th col 3
-                </p>
+            <div class="col-md-2" ng-repeat="talent in vm.hero.Talents | filter:{lvl: 13} : true  track by $index">
+                <img class="img-thumbnail" src="https://d1i1jxrdh2kvwy.cloudfront.net/Images/Talents/Invigoration.png" style="height:50px;width:50px;" ng-click="vm.select(talent, vm.hero.Talents)" ng-class="{ 'talentactive': talent.active }" />
             </div>
         </div>
         <div class="row">
             <div class="col-md-4">
                 <p>
-                    Level 16
+                    Level 16<br />
+                    {{vm.lvl16}}
                 </p>
             </div>
-            <div class="col-md-2">
-                <p>
-                    2nd col 3
-                </p>
-            </div>
-            <div class="col-md-2">
-                <p>
-                    3rd col 3
-                </p>
-            </div>
-            <div class="col-md-2">
-                <p>
-                    4th col 3
-                </p>
-            </div>
-            <div class="col-md-2">
-                <p>
-                    5th col 3
-                </p>
+            <div class="col-md-2" ng-repeat="talent in vm.hero.Talents | filter:{lvl: 16} : true  track by $index">
+                <img class="img-thumbnail" src="https://d1i1jxrdh2kvwy.cloudfront.net/Images/Talents/Invigoration.png" style="height:50px;width:50px;" ng-click="vm.select(talent, vm.hero.Talents)" ng-class="{ 'talentactive': talent.active }" />
             </div>
         </div>
         <div class="row">
             <div class="col-md-4">
                 <p>
-                    Level 20
+                    Level 20<br />
+                    {{vm.lvl20}}
                 </p>
             </div>
-            <div class="col-md-2">
-                <img class="talent" src="https://d1i1jxrdh2kvwy.cloudfront.net/Images/Talents/Invigoration.png" style="height:50px;width:50px;" />
-            </div>
-            <div class="col-md-2">
-                <img class="talent" src="https://d1i1jxrdh2kvwy.cloudfront.net/Images/Talents/Invigoration.png" style="height:50px;width:50px;" />
-            </div>
-            <div class="col-md-2">
-                <img class="talent" src="https://d1i1jxrdh2kvwy.cloudfront.net/Images/Talents/Invigoration.png" style="height:50px;width:50px;" />
-            </div>
-            <div class="col-md-2">
-                <img class="talent" src="https://d1i1jxrdh2kvwy.cloudfront.net/Images/Talents/Invigoration.png" style="height:50px;width:50px;" />
+            <div class="col-md-2" ng-repeat="talent in vm.hero.Talents | filter:{lvl: 20} : true  track by $index">
+                <img class="img-thumbnail" src="https://d1i1jxrdh2kvwy.cloudfront.net/Images/Talents/Invigoration.png" style="height:50px;width:50px;" ng-click="vm.select(talent, vm.hero.Talents)" ng-class="{ 'talentactive': talent.active }" />
             </div>
         </div>
     </div>
 </div>
 <div class="modal-footer">
     <button type="button" class="btn"
-            data-ng-click="vm.close()">
+            data-ng-click="vm.reset(vm.hero.Talents)">
         Reset
     </button>
     <button class="btn btn-primary"
