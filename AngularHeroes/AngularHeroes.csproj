@@ -935,7 +935,7 @@
     <Content Include="Scripts\jquery-3.1.1.slim.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
     <Content Include="Scripts\papaparse.min.js" />
-    <Content Include="style.css" />
+    <Content Include="Content\style.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -995,7 +995,11 @@
   </Target>
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(ProjectDir)*.html" "$(SolutionDir)docs" /Y
-xcopy "$(ProjectDir)App\*.js" "$(SolutionDir)docs\App" /Y</PostBuildEvent>
+xcopy "$(ProjectDir)App\*.js" "$(SolutionDir)docs\App" /Y
+xcopy "$(ProjectDir)Content\style.css" "$(SolutionDir)docs\Content" /Y
+xcopy "$(ProjectDir)Content\ui-bootstrap-csp.css" "$(SolutionDir)docs\Content" /Y
+xcopy "$(ProjectDir)Images\Heroes\*.png" "$(SolutionDir)docs\Images\Heroes" /Y
+xcopy "$(ProjectDir)Images\Talents\*.png" "$(SolutionDir)docs\Images\Talents" /Y</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
