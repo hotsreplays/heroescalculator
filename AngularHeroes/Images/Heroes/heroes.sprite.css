@@ -1,0 +1,363 @@
+/*
+This is an example of how to use the image sprite in your own CSS files
+*/
+.heroes {
+	background-image: url('heroes.sprite.png');
+	background-repeat: no-repeat;
+	display: inline-block;
+}
+.heroes.ui_targetportrait_hero_abathur {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -10px;
+}
+.heroes.ui_targetportrait_hero_alarak {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -113px;
+}
+.heroes.ui_targetportrait_hero_anubarak {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -216px;
+}
+.heroes.ui_targetportrait_hero_artanis {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -319px;
+}
+.heroes.ui_targetportrait_hero_arthas {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -422px;
+}
+.heroes.ui_targetportrait_hero_auriel {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -525px;
+}
+.heroes.ui_targetportrait_hero_azmodan {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -628px;
+}
+.heroes.ui_targetportrait_hero_baelog {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -731px;
+}
+.heroes.ui_targetportrait_hero_barbarian {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -834px;
+}
+.heroes.ui_targetportrait_hero_butcher {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -937px;
+}
+.heroes.ui_targetportrait_hero_chen {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -1040px;
+}
+.heroes.ui_targetportrait_hero_cho {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -1143px;
+}
+.heroes.ui_targetportrait_hero_chromie {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -1246px;
+}
+.heroes.ui_targetportrait_hero_crusader {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -1349px;
+}
+.heroes.ui_targetportrait_hero_dehaka {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -1452px;
+}
+.heroes.ui_targetportrait_hero_demonhunter {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -1555px;
+}
+.heroes.ui_targetportrait_hero_diablo {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -1658px;
+}
+.heroes.ui_targetportrait_hero_erik {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -1761px;
+}
+.heroes.ui_targetportrait_hero_faeriedragon {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -1864px;
+}
+.heroes.ui_targetportrait_hero_falstad {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -1967px;
+}
+.heroes.ui_targetportrait_hero_gall {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -2070px;
+}
+.heroes.ui_targetportrait_hero_gazlowe {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -2173px;
+}
+.heroes.ui_targetportrait_hero_genngreymane {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -2276px;
+}
+.heroes.ui_targetportrait_hero_guldan {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -2379px;
+}
+.heroes.ui_targetportrait_hero_illidan {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -2482px;
+}
+.heroes.ui_targetportrait_hero_jaina {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -2585px;
+}
+.heroes.ui_targetportrait_hero_johanna {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -2688px;
+}
+.heroes.ui_targetportrait_hero_kaelthas {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -2791px;
+}
+.heroes.ui_targetportrait_hero_kerrigan {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -2894px;
+}
+.heroes.ui_targetportrait_hero_l90etc {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -2997px;
+}
+.heroes.ui_targetportrait_hero_leoric {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -3100px;
+}
+.heroes.ui_targetportrait_hero_lili {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -3203px;
+}
+.heroes.ui_targetportrait_hero_lostvikings {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -3306px;
+}
+.heroes.ui_targetportrait_hero_lucio {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -3409px;
+}
+.heroes.ui_targetportrait_hero_lunara {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -3512px;
+}
+.heroes.ui_targetportrait_hero_malfurion {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -3615px;
+}
+.heroes.ui_targetportrait_hero_medic {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -3718px;
+}
+.heroes.ui_targetportrait_hero_medivh {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -3821px;
+}
+.heroes.ui_targetportrait_hero_misha {
+	width: 92px;
+	height: 92px;
+	background-position: -10px -3924px;
+}
+.heroes.ui_targetportrait_hero_monk {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -4026px;
+}
+.heroes.ui_targetportrait_hero_muradin {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -4129px;
+}
+.heroes.ui_targetportrait_hero_murky {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -4232px;
+}
+.heroes.ui_targetportrait_hero_necromancer {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -4335px;
+}
+.heroes.ui_targetportrait_hero_nova {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -4438px;
+}
+.heroes.ui_targetportrait_hero_olaf {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -4541px;
+}
+.heroes.ui_targetportrait_hero_pairedswap_genngreymane {
+	width: 92px;
+	height: 92px;
+	background-position: -10px -4644px;
+}
+.heroes.ui_targetportrait_hero_probius {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -4746px;
+}
+.heroes.ui_targetportrait_hero_ragnaros {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -4849px;
+}
+.heroes.ui_targetportrait_hero_raynor {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -4952px;
+}
+.heroes.ui_targetportrait_hero_rehgar {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -5055px;
+}
+.heroes.ui_targetportrait_hero_rexxar {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -5158px;
+}
+.heroes.ui_targetportrait_hero_samuro {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -5261px;
+}
+.heroes.ui_targetportrait_hero_sgthammer {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -5364px;
+}
+.heroes.ui_targetportrait_hero_stitches {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -5467px;
+}
+.heroes.ui_targetportrait_hero_sylvanas {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -5570px;
+}
+.heroes.ui_targetportrait_hero_tassadar {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -5673px;
+}
+.heroes.ui_targetportrait_hero_thrall {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -5776px;
+}
+.heroes.ui_targetportrait_hero_tinker {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -5879px;
+}
+.heroes.ui_targetportrait_hero_tracer {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -5982px;
+}
+.heroes.ui_targetportrait_hero_tychus {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -6085px;
+}
+.heroes.ui_targetportrait_hero_tyrael {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -6188px;
+}
+.heroes.ui_targetportrait_hero_tyrande {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -6291px;
+}
+.heroes.ui_targetportrait_hero_uther {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -6394px;
+}
+.heroes.ui_targetportrait_hero_valeera {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -6497px;
+}
+.heroes.ui_targetportrait_hero_varian {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -6600px;
+}
+.heroes.ui_targetportrait_hero_witchdoctor {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -6703px;
+}
+.heroes.ui_targetportrait_hero_wizard {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -6806px;
+}
+.heroes.ui_targetportrait_hero_zagara {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -6909px;
+}
+.heroes.ui_targetportrait_hero_zarya {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -7012px;
+}
+.heroes.ui_targetportrait_hero_zeratul {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -7115px;
+}
+.heroes.ui_targetportrait_hero_zuljin {
+	width: 92px;
+	height: 93px;
+	background-position: -10px -7218px;
+}

@@ -2,69 +2,32 @@
     "use strict";
     var app = getModule();
     class HeroCalculator {
-        static $inject: string[] = ["$uibModal"];
+        static $inject: string[] = ["$uibModal","$http","$sce"];
         private lvl: number = 1;
         private ClassFilter: string;
         private sortType: string = "Name";
         private sortReverse: boolean = false;
-        private heroList: Hero[] = [
-            new Hero("Brightwing", "Support", 1528.8, 3.19, 500, 3, 1.20, 88.4, 5.5),
-            new Hero("Malfurion", "Support", 1749.28, 3.64, 500, 3, 1.33, 69.68, 5.5),
-            new Hero("Varian (Base)", "Multi", 2322, 4.84, 500, 3, 1.25, 87, 5.5),
-            new Hero("Sylvanas", "Specialist", 1528.8, 3.19, 500, 3, 1.11, 88.4, 5.5),
-
-            new Hero("Alarak", "Assassin", 1900, 3.96, 500, 3, 1.20, 140, 5.5),
-            new Hero("Cassia", "Assassin", 1660, 4.00, 500, 3, 1.33, 125, 5.5),
-            new Hero("Chromie", "Assassin", 1323, 2.76, 500, 3, 1.00, 73, 5.5),
-            new Hero("Falstad", "Assassin", 1365, 2.84, 500, 3, 1.43, 104, 5.5),
-            new Hero("Greymane", "Assassin", 1876, 3.91, 500, 3, 1.00, 140, 5.5),
-            new Hero("Gul'dan", "Assassin", 1700, 3.54, 500, 3, 1.00, 60, 5.5),
-            new Hero("Illidan", "Assassin", 1650, 3.44, 500, 3, 1.82, 78, 5.5),
-            new Hero("Jaina", "Assassin", 1365, 2.84, 500, 3, 1.00, 60, 5.5),
-            new Hero("Kael'thas", "Assassin", 1520, 3.17, 500, 3, 1.11, 65, 5.5),
-            new Hero("Kerrigan", "Assassin", 1680, 3.50, 500, 3, 1.25, 120, 5.5),
-            new Hero("Li-Ming", "Assassin", 1232, 2.57, 500, 3, 1.00, 63, 5.5),
-            new Hero("Lunara", "Assassin", 1430, 2.98, 500, 3, 1.11, 90, 5.5),
-            new Hero("Nova", "Assassin", 1350, 2.81, 500, 3, 1.00, 105, 5.5),
-            new Hero("Ragnaros", "Assassin", 2000, 4.17, 500, 3, 0.83, 180, 5.5),
-            new Hero("Raynor", "Assassin", 1302, 2.71, 500, 3, 1.25, 122, 5.5),
-            new Hero("Samuro", "Assassin", 1650, 3.44, 500, 3, 1.67, 88, 5.5),
-            new Hero("The Butcher", "Assassin", 2154, 4.49, 500, 3, 1.11, 140, 5.5),
-            new Hero("Thrall", "Assassin", 1787, 3.72, 500, 3, 0.91, 165, 5.5),
-
-            new Hero("Tracer", "Assassin", 1206, 5.02, 500, 3, 8.00, 27, 5.5),
-            new Hero("Tychus", "Assassin", 1925, 4.01, 500, 3, 4.00, 44, 5.5),
-            new Hero("Valeera", "Assassin", 2047, 4.27, 500, 3, 2.00, 79, 5.5),
-            new Hero("Valla", "Assassin", 1273, 2.65, 500, 3, 1.67, 75, 5.5),
-            new Hero("Zeratul", "Assassin", 1622, 3.38, 500, 3, 1.11, 126, 5.5),
-            new Hero("Zul'jin", "Assassin", 1875, 3.90, 500, 3, 1.25, 110, 5.5),
-
-            new Hero("Anub'arak", "Warrior", 2003, 4.17, 500, 3, 1.00, 95, 5.5),
-            new Hero("Artanis", "Warrior", 2470, 5.14, 500, 3, 1.00, 111, 5.5),
-            new Hero("Arthas", "Warrior", 2524, 5.26, 500, 3, 1.00, 95, 5.5),
-            new Hero("Chen", "Warrior", 2550, 5.31, 500, 3, 1.11, 84, 5.5),
-            new Hero("Cho'Gall", "Warrior", 2950, 6.14, 500, 3, 0.91, 130, 5.5),
-            new Hero("Dehaka", "Warrior", 2434, 5.07, 500, 3, 1.11, 110, 5.5),
-            new Hero("Diablo", "Warrior", 2567, 5.35, 500, 3, 0.91, 118, 5.5),
-            new Hero("E.T.C.", "Warrior", 2100, 4.38, 500, 3, 1.00, 99, 5.5),
-            new Hero("Leoric", "Warrior", 2468, 5.14, 500, 3, 0.77, 150, 5.5),
-            new Hero("Muradin", "Warrior", 2633, 5.48, 500, 3, 1.11, 97, 5.5),
-            new Hero("Johanna", "Warrior", 2179, 4.54, 500, 3, 0.91, 99, 5.5),
-            new Hero("Rexxar", "Warrior", 1725, 3.59, 500, 3, 0.87, 99, 5.5),
-            new Hero("Rexxar (Misha)", "Warrior", 1762, 3.67, 500, 3, 0.83, 62, 5.5),
-            new Hero("Sonya", "Warrior", 2341, 4.88, 500, 3, 1.25, 88, 5.5),
-            new Hero("Stitches", "Warrior", 2900, 6.04, 500, 3, 0.91, 85, 5.5),
-            new Hero("Tyrael", "Warrior", 2296, 4.78, 500, 3, 1.25, 78, 5.5),
-            new Hero("Varian (Taunt)", "Multi", 3019, 6.29, 500, 3, 1.25, 87, 5.5),
-            new Hero("Zarya", "Warrior", 2225, 4.64, 500, 3, 4.00, 20, 5.5)
-            
-        ];
-        private message: string = "My level is: " + this.lvl;
+        private heroList: Hero[];
+        private Message: string;
+        private $sce: ng.ISCEService;
 
         public change(): void {
-            this.message = "My level is: " + (this.lvl - 1);
+            this.heroList.forEach(x => x.lvl = (this.lvl - 1));
+            this.heroList.forEach(x => x.WeaponMin.lvlChange(this.lvl - 1));
+            this.heroList.forEach(x => x.BurstTooltip = this.getTooltip(x));
+            this.heroList.forEach(x => x.TalentTreeArray.forEach(t =>
+                t.HtmlToolTip = this.$sce.trustAsHtml(t.Text)));
+        }
 
-            this.heroList.forEach(x => x.lvl = (this.lvl-1));
+        public getTooltip(x: Hero): string {
+            var table = "<table>" +
+                "<tr><td>Attack DPS</td>" + "<td style='padding-left:10px;'>" + x.WeaponMin.DPS.toFixed(2) + "</td></tr>" +
+                "<tr><td>" + x.Skill_Q.Name + "</td>" + "<td>0</td></tr>" +
+                "<tr><td>" + x.Skill_W.Name + "</td>" + "<td>0</td></tr>" +
+                "<tr><td>" + x.Skill_E.Name + "</td>" + "<td>0</td></tr>" +
+                "<tr><td>Total</td>" + "<td>0</td></tr>" +
+                "</table>";
+            return this.$sce.trustAsHtml(table);
         }
 
         public lvlChange(lvl: number): void {
@@ -80,8 +43,17 @@
             }
         }
 
-        constructor(private $uibModal: ng.ui.bootstrap.IModalService) {
-            
+        constructor(private $uibModal: ng.ui.bootstrap.IModalService, private $http: ng.IHttpService, $sce: ng.ISCEService) {
+            this.$sce = $sce;
+            $http.get("/herodata.json").then((result) => {
+                this.Message = "Successfully pulled data!";
+                var data = <Hero[]>result.data;
+                this.heroList = data.map((x) => {
+                    return new Hero(x, $sce);
+                });
+            }).catch((error) => {
+                this.Message = "Error pulling data!";
+            });
         }
 
         public deleteModal(hero: Hero): void {
@@ -90,7 +62,8 @@
                 controller: "HeroDetails",
                 controllerAs: "vm",
                 resolve: {
-                    hero: () => { return hero; }
+                    hero: () => { return hero; },
+                    $sce: () => { return this.$sce; }
                 }
             });
         }
@@ -103,7 +76,7 @@ module HeroesApp {
     "use strict";
     var app = getModule();
     export class HeroDetails {
-        static $inject: string[] = ["$uibModalInstance", "hero"];
+        static $inject: string[] = ["$uibModalInstance", "hero", "$sce"];
         private Title: string;
         private boxyText: string = "test body something";
         private active: boolean = false;
@@ -114,10 +87,11 @@ module HeroesApp {
         private lvl13: string;
         private lvl16: string;
         private lvl20: string;
+        private $sce: ng.ISCEService;
 
-        constructor(private $uibModalInstance: ng.ui.bootstrap.IModalServiceInstance, private hero:Hero) {
+        constructor(private $uibModalInstance: ng.ui.bootstrap.IModalServiceInstance, private hero:Hero, $sce: ng.ISCEService) {
             this.Title = hero.Name;
-            
+            this.$sce = $sce;
         }
 
         public reset(talents: Talent[]): void {
@@ -134,27 +108,27 @@ module HeroesApp {
         public select(talent: Talent, talents: Talent[]): void {
             talent.active = !talent.active;
             //var obj = talents.filter(x => x.lvl == talent.lvl);
-            talents.filter(x => x.lvl == talent.lvl && x.Name !== talent.Name).forEach(x => x.active = false);
-            switch (talent.lvl) {
+            talents.filter(x => x.Tier == talent.Tier && x.Name !== talent.Name).forEach(x => x.active = false);
+            switch (talent.Tier) {
                 case 1:
                     talent.active ? this.lvl1 = talent.Name : '';
                     break;
-                case 4:
+                case 2:
                     talent.active ? this.lvl4 = talent.Name : '';
                     break;
-                case 7:
+                case 3:
                     talent.active ? this.lvl7 = talent.Name : '';
                     break;
-                case 10:
+                case 4:
                     talent.active ? this.lvl10 = talent.Name : '';
                     break;
-                case 13:
+                case 5:
                     talent.active ? this.lvl13 = talent.Name : '';
                     break;
-                case 16:
+                case 6:
                     talent.active ? this.lvl16 = talent.Name : '';
                     break;
-                case 20:
+                case 7:
                     talent.active ? this.lvl20 = talent.Name : '';
                     break;
                 default:
@@ -166,82 +140,105 @@ module HeroesApp {
     app.controller("HeroDetails", HeroDetails);
 }
 
-
 class Hero {
     readonly Name: string;
     public lvl: number = 0;
-    public Class: string;
-    get test(): string { return (this.baseHealth * Math.pow(1.04, this.lvl)).toFixed(2); }
+    public Role: string;
     get CSS(): string {
-        return this.Class === "Support" ? "success" : this.Class === "Warrior" ? "warning" : this.Class === "Assassin" ? "danger" : this.Class === "Specialist" ? "info" : "active";
+        return this.Role === "Support" ? "success" : this.Role === "Warrior" ? "warning" : this.Role === "Damage" ? "danger" : this.Role === "Specialist" ? "info" : "active";
     }
 
-    readonly baseHealth: number;
-    get Health(): string { return this.lvl > 0 ? (this.baseHealth * Math.pow(1.04, this.lvl)).toFixed(0) : this.baseHealth.toFixed(0); }
+    readonly BaseLife: number;
+    get Health(): number { return this.lvl > 0 ? (this.BaseLife * Math.pow((1 + this.BaseLifeScale), this.lvl)) : this.BaseLife; }
+    public BaseLifeScale: number;
 
-    readonly baseHealthRegen: number;
-    get HealthRegen(): string { return this.lvl > 0 ? (this.baseHealthRegen * Math.pow(1.04, this.lvl)).toFixed(2) : this.baseHealthRegen.toFixed(2); }
+    readonly BasseLifeRegen: number;
+    get HealthRegen(): number { return this.lvl > 0 ? (this.BasseLifeRegen * Math.pow((1 + this.BaseLifeRegenScale), this.lvl)) : this.BasseLifeRegen; }
+    public BaseLifeRegenScale: number;
 
-    readonly baseMana: number;
-    get Mana(): string { return this.lvl > 0 ? (this.baseMana * Math.pow(1.04, this.lvl)).toFixed(0) : this.baseMana.toFixed(0); }
+    public EnergyType: string;
+    get EnergyLabel(): string { return this.EnergyType == null ? "": this.EnergyType.charAt(0); }
 
-    readonly baseManaRegen: number;
-    get ManaRegen(): string { return this.lvl > 0 ? (this.baseManaRegen * Math.pow(1.04, this.lvl)).toFixed(2) : this.baseManaRegen.toFixed(2); }
+    readonly BaseMana: number;
+    get Mana(): number { return this.lvl > 0 ? (this.BaseMana + (this.lvl * this.BaseManaScale)) : this.BaseMana; }
+    public BaseManaScale: number;
 
-    readonly baseAtkSpeed: number;
-    get AtkSpeed(): number { return this.baseAtkSpeed; }
+    readonly BaseManaRegen: number;
+    get ManaRegen(): number { return this.lvl > 0 ? (this.BaseManaRegen +(this.lvl * this.BaseManaRegenScale)) : this.BaseManaRegen; }
+    public BaseManaRegenScale: number;
+    
+    public Skill_Q: Ability;
+    public Skill_W: Ability;
+    public Skill_E: Ability;
+    //private skillR: Skill;
+    get skillR(): Skill {
+        //this.Talents.filter(x => x.lvl == 10 && x.active).map();
+        return new Skill("Emerald Wind", 120, 60, "Skill Description");
+    }
+    public BurstTooltip: string;
+    //get BurstTooltip(): string {
+    //    return this.$sce.trustAsHtml("Calculated <b> Burst </b> Damage");
+    //}
+    get BurstDamage(): BurstDamage {
+        return new BurstDamage(this.WeaponMin, this.Skill_Q, this.Skill_W, this.Skill_E, this.$sce);
+    }
 
-    readonly baseDamage: number;
-    get calcDamage(): number { return this.lvl > 0 ? this.baseDamage * Math.pow(1.04, this.lvl) : this.baseDamage; }
-    get Damage(): string { return this.calcDamage.toFixed(2); }
-    get DPS(): string { return (this.calcDamage * this.AtkSpeed).toFixed(2); }
+    public WeaponMin: Weapon;
+    get DPS(): number { return this.lvl > 0 ? (this.WeaponMin.DPS * Math.pow((1 + this.WeaponMin.Scale), this.lvl)) : this.WeaponMin.DPS; }
 
-    readonly baseRange: number;
-    get Range(): number { return this.baseRange; }
+    public ArmorPhysical: Armor;
+    public ArmorSpell: Armor;
 
-    private skillQ: Skill;
-    private skillW: Skill;
-    private skillE: Skill;
-    private skillR: Skill;
+    public TalentTreeArray: Talent[];
 
-    private Talents: Talent[];
+    private $sce: ng.ISCEService;
 
-    constructor(Name: string, Class: string, baseHealth: number, baseHealthRegen: number, baseMana: number, baseManaRegen: number, baseAtkSpeed: number, baseDamage: number, baseRange:number ) {
-        this.Name = Name;
-        this.Class = Class;
-        this.baseHealth = baseHealth;
-        this.baseHealthRegen = baseHealthRegen;
-        this.baseMana = baseMana;
-        this.baseManaRegen = baseManaRegen;
-        this.baseAtkSpeed = baseAtkSpeed;
-        this.baseDamage = baseDamage;
-        this.baseRange = baseRange;
+    static $inject: string[] = ["json", "$sce"];
 
-        this.skillQ = new Skill("Arcane Flare", 60, 8, "Skill Description");
-        this.skillW = new Skill("Polymorph", 50, 12, "Skill Description");
-        this.skillE = new Skill("Pixie Dust", 45, 10, "Skill Description");
-        this.skillR = new Skill("Emerald Wind", 120, 60, "Skill Description");
-        this.Talents = [
-            new Talent("Talent1", "Description", 1),
-            new Talent("Talent2", "Description", 1),
-            new Talent("Talent3", "Description", 1),
-            new Talent("Talent4", "Description", 1),
-            new Talent("Talent5", "Description", 20),
-            new Talent("Talent6", "Description", 20),
-            new Talent("Talent7", "Description", 20),
-            new Talent("Talent8", "Description", 4),
-            new Talent("Talent9", "Description", 4),
-            new Talent("Talent10", "Description", 7),
-            new Talent("Talent11", "Description", 7),
-            new Talent("Talent12", "Description", 10),
-            new Talent("Talent13", "Description", 10),
-            new Talent("Talent14", "Description", 13),
-            new Talent("Talent15", "Description", 13),
-            new Talent("Talent16", "Description", 13),
-            new Talent("Talent17", "Description", 16),
-            new Talent("Talent18", "Description", 16),
-            new Talent("Talent19", "Description", 16)
-        ];
+    constructor(json: Hero, $sce: ng.ISCEService) {
+        this.$sce = $sce;
+        this.Name = json.Name;
+        this.Role = json.Role;
+        this.BaseLife = json.BaseLife;
+        this.BaseLifeScale = json.BaseLifeScale;
+        this.BasseLifeRegen = json.BasseLifeRegen;
+        this.BaseMana = json.BaseMana;
+        this.BaseManaRegen = json.BaseManaRegen;
+        this.EnergyType = json.EnergyType;
+        this.BaseLifeRegenScale = json.BaseLifeRegenScale;
+        this.BaseManaScale = json.BaseManaScale;
+        this.BaseManaRegenScale = json.BaseManaRegenScale;
+        this.WeaponMin = new Weapon(json.WeaponMin);
+        this.ArmorPhysical = new Armor(json.ArmorPhysical);
+        this.ArmorSpell = new Armor(json.ArmorSpell);
+        this.Skill_Q = new Ability(json.Skill_Q);
+        this.Skill_W = new Ability(json.Skill_W);
+        this.Skill_E = new Ability(json.Skill_E);
+        var table = "<table>" +
+            "<tr><td>Attack DPS</td>" + "<td style='padding-left:10px;'>"+this.WeaponMin.DPS.toFixed(2)+"</td></tr>" +
+            "<tr><td>" + this.Skill_Q.Name + "</td>" + "<td>0</td></tr>" +
+            "<tr><td>" + this.Skill_W.Name + "</td>" + "<td>0</td></tr>" +
+            "<tr><td>" + this.Skill_E.Name + "</td>" + "<td>0</td></tr>" +
+            "<tr><td>Total</td>" + "<td>0</td></tr>" +
+            "</table>";
+        this.BurstTooltip = $sce.trustAsHtml("Calculated <b> Burst </b> Damage</br>" + table);
+
+        this.TalentTreeArray = json.TalentTreeArray.map((x) => {
+            return new Talent(x);
+        });
+    }
+}
+
+class BurstDamage {
+    public ToolTip: string;
+    public DamageAttack: number;
+    public DamageQ: number;
+    public DamageW: number;
+    public DamageE: number;
+
+    constructor(Atk: Weapon, Q: Ability, W: Ability, E: Ability, $sce:ng.ISCEService) {
+        this.DamageAttack = Atk.DPS;
+        this.ToolTip = $sce.trustAsHtml("Calculated <b>Burst</b> Damage");
     }
 }
 
@@ -259,15 +256,68 @@ class Skill {
     }
 }
 
-class Talent {
-    readonly Name: string;
-    readonly Description: string;
-    readonly lvl: number;
-    public active: boolean = false;
+class Weapon {
+    public Range: number;
+    public AtkSec: number;
+    private _Damage: number;
+    get Damage(): number { return this.lvl > 0 ? (this._Damage * Math.pow((1 + this.Scale), this.lvl)) : this._Damage; }
+    public AtkCount: number;
+    public Scale: number;
+    private lvl: number;
+    get DPS(): number { return (this.Damage * this.AtkSec) * this.AtkCount; }
+    get multiply(): boolean { return this.AtkCount > 1 ? true: false; }
 
-    constructor(Name: string, Description: string, lvl:number) {
-        this.Name = Name;
-        this.Description = Description;
+    constructor(json: Weapon) {
+        this.AtkSec = json.AtkSec;
+        this._Damage = json.Damage;
+        this.Range = json.Range;
+        this.AtkCount = json.AtkCount;
+        this.Scale = json.Scale;
+    }
+
+    public lvlChange(lvl: number): void {
         this.lvl = lvl;
+    }
+}
+
+class Armor {
+    public ArmorSet: string;
+    public Type: string;
+    public Value: number;
+    get Show(): boolean { return this.Value > 0 ? true : false; }
+
+    constructor(json: Armor) {
+        this.ArmorSet = json.ArmorSet;
+        this.Type = json.Type;
+        this.Value = json.Value;
+    }
+}
+
+class Ability {
+    public Name: string;
+
+    constructor(json: Ability) {
+        this.Name = json.Name;
+    }
+}
+
+class Talent {
+    public Name: string;
+    public Text: string;
+    public ToolTip: string;
+    public Tier: number;
+    public Column: number;
+    public Icon: string;
+    public active: boolean = false;
+    get Img(): string { return "Images/Talents/" + this.Icon; }
+    public HtmlToolTip: string;
+
+    constructor(json: Talent) {
+        this.Name = json.Name;
+        this.Text = json.Text;
+        this.ToolTip = json.ToolTip;
+        this.Tier = json.Tier;
+        this.Column = json.Column;
+        this.Icon = json.Icon;
     }
 }
