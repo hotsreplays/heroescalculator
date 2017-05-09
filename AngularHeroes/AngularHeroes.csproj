@@ -995,6 +995,7 @@
   </Target>
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(ProjectDir)*.html" "$(SolutionDir)docs" /Y
+xcopy "$(ProjectDir)*.json" "$(SolutionDir)docs" /Y
 xcopy "$(ProjectDir)App\*.js" "$(SolutionDir)docs\App" /Y
 xcopy "$(ProjectDir)Content\style.css" "$(SolutionDir)docs\Content" /Y
 xcopy "$(ProjectDir)Content\ui-bootstrap-csp.css" "$(SolutionDir)docs\Content" /Y
