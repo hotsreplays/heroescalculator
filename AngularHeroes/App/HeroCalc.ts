@@ -45,7 +45,7 @@
 
         constructor(private $uibModal: ng.ui.bootstrap.IModalService, private $http: ng.IHttpService, $sce: ng.ISCEService) {
             this.$sce = $sce;
-            $http.get("/herodata.json").then((result) => {
+            $http.get("./herodata.json").then((result) => {
                 this.Message = "Successfully pulled data!";
                 var data = <Hero[]>result.data;
                 this.heroList = data.map((x) => {

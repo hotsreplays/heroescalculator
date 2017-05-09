@@ -11,7 +11,7 @@ var HeroesApp;
             this.sortType = "Name";
             this.sortReverse = false;
             this.$sce = $sce;
-            $http.get("/herodata.json").then(function (result) {
+            $http.get("./herodata.json").then(function (result) {
                 _this.Message = "Successfully pulled data!";
                 var data = result.data;
                 _this.heroList = data.map(function (x) {
