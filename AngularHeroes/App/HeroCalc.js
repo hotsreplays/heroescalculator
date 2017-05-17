@@ -19,6 +19,9 @@ var HeroesApp;
                 });
             }).catch(function (error) {
                 _this.Message = "Error pulling data!";
+                console.log(_this.Message);
+            }).then(function () { _this.change(); }).catch(function (error) {
+                console.log("Error on change");
             });
         }
         HeroCalculator.prototype.change = function () {
@@ -26,9 +29,13 @@ var HeroesApp;
             this.heroList.forEach(function (x) { return x.lvl = (_this.lvl - 1); });
             this.heroList.forEach(function (x) { return x.WeaponMin.lvlChange(_this.lvl - 1); });
             this.heroList.forEach(function (x) { return x.BurstTooltip = _this.getTooltip(x); });
-            this.heroList.forEach(function (x) { return x.TalentTreeArray.forEach(function (t) {
-                return t.HtmlToolTip = _this.$sce.trustAsHtml(t.Text);
-            }); });
+            this.heroList.forEach(function (x) {
+                if (x.TalentTreeArray != null) {
+                    x.TalentTreeArray.forEach(function (t) {
+                        return t.HtmlToolTip = _this.$sce.trustAsHtml(t.Text);
+                    });
+                }
+            });
         };
         HeroCalculator.prototype.getTooltip = function (x) {
             var table = "<table>" +
@@ -130,35 +137,51 @@ var HeroesApp;
 var Hero = (function () {
     function Hero(json, $sce) {
         this.lvl = 0;
-        this.$sce = $sce;
-        this.Name = json.Name;
-        this.Role = json.Role;
-        this.BaseLife = json.BaseLife;
-        this.BaseLifeScale = json.BaseLifeScale;
-        this.BasseLifeRegen = json.BasseLifeRegen;
-        this.BaseMana = json.BaseMana;
-        this.BaseManaRegen = json.BaseManaRegen;
-        this.EnergyType = json.EnergyType;
-        this.BaseLifeRegenScale = json.BaseLifeRegenScale;
-        this.BaseManaScale = json.BaseManaScale;
-        this.BaseManaRegenScale = json.BaseManaRegenScale;
-        this.WeaponMin = new Weapon(json.WeaponMin);
-        this.ArmorPhysical = new Armor(json.ArmorPhysical);
-        this.ArmorSpell = new Armor(json.ArmorSpell);
-        this.Skill_Q = new Ability(json.Skill_Q);
-        this.Skill_W = new Ability(json.Skill_W);
-        this.Skill_E = new Ability(json.Skill_E);
-        var table = "<table>" +
-            "<tr><td>Attack DPS</td>" + "<td style='padding-left:10px;'>" + this.WeaponMin.DPS.toFixed(2) + "</td></tr>" +
-            "<tr><td>" + this.Skill_Q.Name + "</td>" + "<td>0</td></tr>" +
-            "<tr><td>" + this.Skill_W.Name + "</td>" + "<td>0</td></tr>" +
-            "<tr><td>" + this.Skill_E.Name + "</td>" + "<td>0</td></tr>" +
-            "<tr><td>Total</td>" + "<td>0</td></tr>" +
-            "</table>";
-        this.BurstTooltip = $sce.trustAsHtml("Calculated <b> Burst </b> Damage</br>" + table);
-        this.TalentTreeArray = json.TalentTreeArray.map(function (x) {
-            return new Talent(x);
-        });
+        try {
+            this.$sce = $sce;
+            // Hero Details
+            this.Name = json.Name;
+            this.HeroTitle = json.HeroTitle;
+            this.HeroInfo = json.HeroInfo;
+            this.HeroDescription = json.HeroDescription;
+            this.Role = json.Role;
+            // Hero Life
+            this.BaseLife = json.BaseLife;
+            this.BaseLifeScale = json.BaseLifeScale;
+            this.BasseLifeRegen = json.BasseLifeRegen;
+            this.BaseLifeRegenScale = json.BaseLifeRegenScale;
+            // Hero Energy
+            this.BaseMana = json.BaseMana;
+            this.BaseManaRegen = json.BaseManaRegen;
+            this.EnergyType = json.EnergyType;
+            this.BaseManaScale = json.BaseManaScale;
+            this.BaseManaRegenScale = json.BaseManaRegenScale;
+            // Hero Weapons
+            this.WeaponMin = new Weapon(json.WeaponMin);
+            // Hero Armor
+            this.ArmorPhysical = new Armor(json.ArmorPhysical);
+            this.ArmorSpell = new Armor(json.ArmorSpell);
+            // Hero Abilities Skills
+            this.Skill_Q = new Ability(json.Skill_Q);
+            this.Skill_W = new Ability(json.Skill_W);
+            this.Skill_E = new Ability(json.Skill_E);
+            var table = "<table>" +
+                "<tr><td>Attack DPS</td>" + "<td style='padding-left:10px;'>" + this.WeaponMin.DPS.toFixed(2) + "</td></tr>" +
+                "<tr><td>" + this.Skill_Q.Name + "</td>" + "<td>0</td></tr>" +
+                "<tr><td>" + this.Skill_W.Name + "</td>" + "<td>0</td></tr>" +
+                "<tr><td>" + this.Skill_E.Name + "</td>" + "<td>0</td></tr>" +
+                "<tr><td>Total</td>" + "<td>0</td></tr>" +
+                "</table>";
+            this.BurstTooltip = $sce.trustAsHtml("Calculated <b> Burst </b> Damage</br>" + table);
+            // Hero Talents
+            this.TalentTreeArray = json.TalentTreeArray.map(function (x) {
+                return new Talent(x);
+            });
+        }
+        catch (Error) {
+            console.log(json.Name + " Hero Error");
+            console.error(Error);
+        }
     }
     Object.defineProperty(Hero.prototype, "CSS", {
         get: function () {
@@ -213,6 +236,11 @@ var Hero = (function () {
     });
     Object.defineProperty(Hero.prototype, "DPS", {
         get: function () { return this.lvl > 0 ? (this.WeaponMin.DPS * Math.pow((1 + this.WeaponMin.Scale), this.lvl)) : this.WeaponMin.DPS; },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Hero.prototype, "Burst", {
+        get: function () { return this.DPS + this.Skill_Q.Damage + this.Skill_W.Damage + this.Skill_E.Damage; },
         enumerable: true,
         configurable: true
     });
@@ -279,6 +307,7 @@ var Armor = (function () {
 var Ability = (function () {
     function Ability(json) {
         this.Name = json.Name;
+        this.Damage = json.Damage;
     }
     return Ability;
 }());

@@ -76,50 +76,52 @@
                         <tr>
                             <th class="active">
                                 <a href="#" ng-click="Ctrl.sortType = 'Name'; Ctrl.sortReverse = !Ctrl.sortReverse">Name</a>
-                                <span ng-show="Ctrl.sortType == 'Name' && !Ctrl.sortReverse" class="glyphicon glyphicon-chevron-down"></span>
-                                <span ng-show="Ctrl.sortType == 'Name' && Ctrl.sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                                <span ng-show="Ctrl.sortType == 'Name' && !Ctrl.sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                                <span ng-show="Ctrl.sortType == 'Name' && Ctrl.sortReverse" class="glyphicon glyphicon-chevron-down"></span>
                             </th>
                             <th class="warning">
                                 <a href="#" ng-click="Ctrl.sortType = 'Health'; Ctrl.sortReverse = !Ctrl.sortReverse">Health</a>
-                                <span ng-show="Ctrl.sortType == 'Health' && !Ctrl.sortReverse" class="glyphicon glyphicon-chevron-down"></span>
-                                <span ng-show="Ctrl.sortType == 'Health' && Ctrl.sortReverse" class="glyphicon glyphicon-chevron-up"></span>
-                                <span class="label label-default"><i class="fa fa-shield" aria-hidden="true"></i> Armour</span>
+                                <span ng-show="Ctrl.sortType == 'Health' && !Ctrl.sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                                <span ng-show="Ctrl.sortType == 'Health' && Ctrl.sortReverse" class="glyphicon glyphicon-chevron-down"></span>
+                                <span class="label label-default"><i class="fa fa-shield" aria-hidden="true"></i></span>
                             </th>
                             <th class="warning">
                                 <a href="#" ng-click="Ctrl.sortType = 'HealthRegen'; Ctrl.sortReverse = !Ctrl.sortReverse">Regen</a>
-                                <span ng-show="Ctrl.sortType == 'HealthRegen' && !Ctrl.sortReverse" class="glyphicon glyphicon-chevron-down"></span>
-                                <span ng-show="Ctrl.sortType == 'HealthRegen' && Ctrl.sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                                <span ng-show="Ctrl.sortType == 'HealthRegen' && !Ctrl.sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                                <span ng-show="Ctrl.sortType == 'HealthRegen' && Ctrl.sortReverse" class="glyphicon glyphicon-chevron-down"></span>
                             </th>
                             <th class="info">
                                 <a href="#" ng-click="Ctrl.sortType = 'Mana'; Ctrl.sortReverse = !Ctrl.sortReverse">Mana</a>
-                                <span ng-show="Ctrl.sortType == 'Mana' && !Ctrl.sortReverse" class="glyphicon glyphicon-chevron-down"></span>
-                                <span ng-show="Ctrl.sortType == 'Mana' && Ctrl.sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                                <span ng-show="Ctrl.sortType == 'Mana' && !Ctrl.sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                                <span ng-show="Ctrl.sortType == 'Mana' && Ctrl.sortReverse" class="glyphicon glyphicon-chevron-down"></span>
                             </th>
                             <th class="info">
                                 <a href="#" ng-click="Ctrl.sortType = 'ManaRegen'; Ctrl.sortReverse = !Ctrl.sortReverse">Regen</a>
-                                <span ng-show="Ctrl.sortType == 'ManaRegen' && !Ctrl.sortReverse" class="glyphicon glyphicon-chevron-down"></span>
-                                <span ng-show="Ctrl.sortType == 'ManaRegen' && Ctrl.sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                                <span ng-show="Ctrl.sortType == 'ManaRegen' && !Ctrl.sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                                <span ng-show="Ctrl.sortType == 'ManaRegen' && Ctrl.sortReverse" class="glyphicon glyphicon-chevron-down"></span>
                             </th>
                             <th class="danger">
                                 <a href="#" ng-click="Ctrl.sortType = 'WeaponMin.Damage'; Ctrl.sortReverse = !Ctrl.sortReverse">Damage</a>
-                                <span ng-show="Ctrl.sortType == 'WeaponMin.Damage' && !Ctrl.sortReverse" class="glyphicon glyphicon-chevron-down"></span>
-                                <span ng-show="Ctrl.sortType == 'WeaponMin.Damage' && Ctrl.sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                                <span ng-show="Ctrl.sortType == 'WeaponMin.Damage' && !Ctrl.sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                                <span ng-show="Ctrl.sortType == 'WeaponMin.Damage' && Ctrl.sortReverse" class="glyphicon glyphicon-chevron-down"></span>
                             </th>
                             <th class="danger">
                                 <a href="#" ng-click="Ctrl.sortType = 'WeaponMin.AtkSec'; Ctrl.sortReverse = !Ctrl.sortReverse">Atk/Sec</a>
-                                <span ng-show="Ctrl.sortType == 'WeaponMin.AtkSec' && !Ctrl.sortReverse" class="glyphicon glyphicon-chevron-down"></span>
-                                <span ng-show="Ctrl.sortType == 'WeaponMin.AtkSec' && Ctrl.sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                                <span ng-show="Ctrl.sortType == 'WeaponMin.AtkSec' && !Ctrl.sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                                <span ng-show="Ctrl.sortType == 'WeaponMin.AtkSec' && Ctrl.sortReverse" class="glyphicon glyphicon-chevron-down"></span>
                             </th>
                             <th class="danger">
                                 <a href="#" ng-click="Ctrl.sortType = 'WeaponMin.DPS'; Ctrl.sortReverse = !Ctrl.sortReverse">DPS</a>
-                                <span ng-show="Ctrl.sortType == 'WeaponMin.DPS' && !Ctrl.sortReverse" class="glyphicon glyphicon-chevron-down"></span>
-                                <span ng-show="Ctrl.sortType == 'WeaponMin.DPS' && Ctrl.sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                                <span ng-show="Ctrl.sortType == 'WeaponMin.DPS' && !Ctrl.sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                                <span ng-show="Ctrl.sortType == 'WeaponMin.DPS' && Ctrl.sortReverse" class="glyphicon glyphicon-chevron-down"></span>
+                            </th>
+                            <th class="danger">
                                 <span class="label label-danger">Burst</span>
                             </th>
                             <th class="danger">
                                 <a href="#" ng-click="Ctrl.sortType = 'WeaponMin.Range'; Ctrl.sortReverse = !Ctrl.sortReverse">Range</a>
-                                <span ng-show="Ctrl.sortType == 'WeaponMin.Range' && !Ctrl.sortReverse" class="glyphicon glyphicon-chevron-down"></span>
-                                <span ng-show="Ctrl.sortType == 'WeaponMin.Range' && Ctrl.sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                                <span ng-show="Ctrl.sortType == 'WeaponMin.Range' && !Ctrl.sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                                <span ng-show="Ctrl.sortType == 'WeaponMin.Range' && Ctrl.sortReverse" class="glyphicon glyphicon-chevron-down"></span>
                             </th>
                             <th>(Q)</th>
                             <th>(W)</th>
@@ -138,7 +140,8 @@
                             <td class="info">{{hero.ManaRegen | number:2}}</td>
                             <td class="danger">{{hero.WeaponMin.Damage | number:0}} <span ng-show="hero.WeaponMin.multiply" class="label label-info" uib-tooltip="# of hits per attack">x{{hero.WeaponMin.AtkCount}}</span></td>
                             <td class="danger">{{hero.WeaponMin.AtkSec | number:2}}</td>
-                            <td class="danger">{{hero.WeaponMin.DPS | number:2}} <span class="label label-danger" uib-tooltip-html="hero.BurstTooltip" tooltip-placement="bottom">{{hero.WeaponMin.DPS | number:2}}</span></td>
+                            <td class="danger">{{hero.WeaponMin.DPS | number:2}}</td>
+                            <td class="danger"><span class="label label-danger" uib-tooltip-template="'tooltip_dps.html'" tooltip-placement="bottom">{{hero.Burst | number:2}}</span></td>
                             <td class="danger">{{hero.WeaponMin.Range}}</td>
                             <td>{{hero.Skill_Q.Name}}</td>
                             <td>{{hero.Skill_W.Name}}</td>

@@ -15,8 +15,12 @@
             this.heroList.forEach(x => x.lvl = (this.lvl - 1));
             this.heroList.forEach(x => x.WeaponMin.lvlChange(this.lvl - 1));
             this.heroList.forEach(x => x.BurstTooltip = this.getTooltip(x));
-            this.heroList.forEach(x => x.TalentTreeArray.forEach(t =>
-                t.HtmlToolTip = this.$sce.trustAsHtml(t.Text)));
+            this.heroList.forEach(x => {
+                if (x.TalentTreeArray != null) {
+                    x.TalentTreeArray.forEach(t =>
+                        t.HtmlToolTip = this.$sce.trustAsHtml(t.Text))
+                }
+            });
         }
 
         public getTooltip(x: Hero): string {
@@ -53,7 +57,10 @@
                 });
             }).catch((error) => {
                 this.Message = "Error pulling data!";
-            });
+                console.log(this.Message);
+                }).then(() => { this.change(); }).catch((error) => {
+                    console.log("Error on change");
+                });
         }
 
         public deleteModal(hero: Hero): void {
@@ -142,6 +149,9 @@ module HeroesApp {
 
 class Hero {
     readonly Name: string;
+    readonly HeroTitle: string;
+    readonly HeroInfo: string;
+    readonly HeroDescription: string;
     public lvl: number = 0;
     public Role: string;
     get CSS(): string {
@@ -185,6 +195,7 @@ class Hero {
 
     public WeaponMin: Weapon;
     get DPS(): number { return this.lvl > 0 ? (this.WeaponMin.DPS * Math.pow((1 + this.WeaponMin.Scale), this.lvl)) : this.WeaponMin.DPS; }
+    get Burst(): number { return this.DPS + this.Skill_Q.Damage + this.Skill_W.Damage + this.Skill_E.Damage; }
 
     public ArmorPhysical: Armor;
     public ArmorSpell: Armor;
@@ -196,36 +207,51 @@ class Hero {
     static $inject: string[] = ["json", "$sce"];
 
     constructor(json: Hero, $sce: ng.ISCEService) {
-        this.$sce = $sce;
-        this.Name = json.Name;
-        this.Role = json.Role;
-        this.BaseLife = json.BaseLife;
-        this.BaseLifeScale = json.BaseLifeScale;
-        this.BasseLifeRegen = json.BasseLifeRegen;
-        this.BaseMana = json.BaseMana;
-        this.BaseManaRegen = json.BaseManaRegen;
-        this.EnergyType = json.EnergyType;
-        this.BaseLifeRegenScale = json.BaseLifeRegenScale;
-        this.BaseManaScale = json.BaseManaScale;
-        this.BaseManaRegenScale = json.BaseManaRegenScale;
-        this.WeaponMin = new Weapon(json.WeaponMin);
-        this.ArmorPhysical = new Armor(json.ArmorPhysical);
-        this.ArmorSpell = new Armor(json.ArmorSpell);
-        this.Skill_Q = new Ability(json.Skill_Q);
-        this.Skill_W = new Ability(json.Skill_W);
-        this.Skill_E = new Ability(json.Skill_E);
-        var table = "<table>" +
-            "<tr><td>Attack DPS</td>" + "<td style='padding-left:10px;'>"+this.WeaponMin.DPS.toFixed(2)+"</td></tr>" +
-            "<tr><td>" + this.Skill_Q.Name + "</td>" + "<td>0</td></tr>" +
-            "<tr><td>" + this.Skill_W.Name + "</td>" + "<td>0</td></tr>" +
-            "<tr><td>" + this.Skill_E.Name + "</td>" + "<td>0</td></tr>" +
-            "<tr><td>Total</td>" + "<td>0</td></tr>" +
-            "</table>";
-        this.BurstTooltip = $sce.trustAsHtml("Calculated <b> Burst </b> Damage</br>" + table);
-
-        this.TalentTreeArray = json.TalentTreeArray.map((x) => {
-            return new Talent(x);
-        });
+        try {
+            this.$sce = $sce;
+            // Hero Details
+            this.Name = json.Name;
+            this.HeroTitle = json.HeroTitle;
+            this.HeroInfo = json.HeroInfo;
+            this.HeroDescription = json.HeroDescription;
+            this.Role = json.Role;
+            // Hero Life
+            this.BaseLife = json.BaseLife;
+            this.BaseLifeScale = json.BaseLifeScale;
+            this.BasseLifeRegen = json.BasseLifeRegen;
+            this.BaseLifeRegenScale = json.BaseLifeRegenScale;
+            // Hero Energy
+            this.BaseMana = json.BaseMana;
+            this.BaseManaRegen = json.BaseManaRegen;
+            this.EnergyType = json.EnergyType;
+            this.BaseManaScale = json.BaseManaScale;
+            this.BaseManaRegenScale = json.BaseManaRegenScale;
+            // Hero Weapons
+            this.WeaponMin = new Weapon(json.WeaponMin);
+            // Hero Armor
+            this.ArmorPhysical = new Armor(json.ArmorPhysical);
+            this.ArmorSpell = new Armor(json.ArmorSpell);
+            // Hero Abilities Skills
+            this.Skill_Q = new Ability(json.Skill_Q);
+            this.Skill_W = new Ability(json.Skill_W);
+            this.Skill_E = new Ability(json.Skill_E);
+            var table = "<table>" +
+                "<tr><td>Attack DPS</td>" + "<td style='padding-left:10px;'>" + this.WeaponMin.DPS.toFixed(2) + "</td></tr>" +
+                "<tr><td>" + this.Skill_Q.Name + "</td>" + "<td>0</td></tr>" +
+                "<tr><td>" + this.Skill_W.Name + "</td>" + "<td>0</td></tr>" +
+                "<tr><td>" + this.Skill_E.Name + "</td>" + "<td>0</td></tr>" +
+                "<tr><td>Total</td>" + "<td>0</td></tr>" +
+                "</table>";
+            this.BurstTooltip = $sce.trustAsHtml("Calculated <b> Burst </b> Damage</br>" + table);
+            // Hero Talents
+            this.TalentTreeArray = json.TalentTreeArray.map((x) => {
+                return new Talent(x);
+            });
+        }
+        catch (Error) {
+            console.log(json.Name + " Hero Error");
+            console.error(Error);
+        }
     }
 }
 
@@ -295,9 +321,11 @@ class Armor {
 
 class Ability {
     public Name: string;
+    public Damage: number;
 
     constructor(json: Ability) {
         this.Name = json.Name;
+        this.Damage = json.Damage;
     }
 }
 

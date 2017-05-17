@@ -936,6 +936,7 @@
     <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
     <Content Include="Scripts\papaparse.min.js" />
     <Content Include="Content\style.css" />
+    <Content Include="tooltip_dps.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

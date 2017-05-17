@@ -1,88 +1,93 @@
 ﻿<div class="modal-header success">
-    <h3>{{vm.hero.Name}} - Talent Configuration</h3>
+    <h3>{{vm.hero.Name}} - {{vm.hero.HeroTitle}}</h3>
+    <p>{{vm.hero.HeroInfo}}</p>
 </div>
 <div class="modal-body">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-sm-12">
                 <p>
-                    Level 1<br />
-                    {{vm.lvl1}}
+                    <b>Level 1</b> {{vm.lvl1}}
                 </p>
             </div>
-            <div class="col-md-2" ng-repeat="talent in vm.hero.TalentTreeArray | filter: {Tier: 1} : true track by $index">
+        </div>
+        <div class="row">
+            <div class="col-sm-2 col-sm-push-2" ng-repeat="talent in vm.hero.TalentTreeArray | filter:{Tier: 1} : true  track by $index">
                 <img class="img-thumbnail" src="{{talent.Img}}" style="height:50px;width:50px;" uib-tooltip-html="talent.HtmlToolTip" tooltip-placement="bottom" ng-click="vm.select(talent, vm.hero.TalentTreeArray)" ng-class="{ 'talentactive': talent.active }" />
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-sm-12">
                 <p>
-                    Level 4<br />
-                    {{vm.lvl4}}
+                    <b>Level 4</b> {{vm.lvl4}}
                 </p>
             </div>
-            <div class="col-md-2" ng-repeat="talent in vm.hero.TalentTreeArray | filter:{Tier: 2} : true  track by $index">
+        </div>
+        <div class="row">
+            <div class="col-sm-2 col-sm-push-2" ng-repeat="talent in vm.hero.TalentTreeArray | filter:{Tier: 2} : true  track by $index">
                 <img class="img-thumbnail" src="{{talent.Img}}" style="height:50px;width:50px;" uib-tooltip-html="talent.HtmlToolTip" tooltip-placement="bottom" ng-click="vm.select(talent, vm.hero.TalentTreeArray)" ng-class="{ 'talentactive': talent.active }" />
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-sm-12">
                 <p>
-                    Level 7<br />
-                    {{vm.lvl7}}
+                    <b>Level 7</b> {{vm.lvl7}}
                 </p>
             </div>
-            <div class="col-md-2" ng-repeat="talent in vm.hero.TalentTreeArray | filter:{Tier: 3} : true  track by $index">
+        </div>
+        <div class="row">
+            <div class="col-sm-2 col-sm-push-2" ng-repeat="talent in vm.hero.TalentTreeArray | filter:{Tier: 3} : true  track by $index">
                 <img class="img-thumbnail" src="{{talent.Img}}" style="height:50px;width:50px;" uib-tooltip-html="talent.HtmlToolTip" tooltip-placement="bottom" ng-click="vm.select(talent, vm.hero.TalentTreeArray)" ng-class="{ 'talentactive': talent.active }" />
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-sm-12">
                 <p>
-                    Level 10<br />
-                    {{vm.lvl10}}
+                    <b>Level 10</b> {{vm.lvl10}}
                 </p>
             </div>
-            <div class="col-md-2" ng-repeat="talent in vm.hero.TalentTreeArray | filter:{Tier: 4} : true  track by $index">
+        </div>
+        <div class="row">
+            <div class="col-sm-2 col-sm-push-2" ng-repeat="talent in vm.hero.TalentTreeArray | filter:{Tier: 4} : true  track by $index">
                 <img class="img-thumbnail" src="{{talent.Img}}" style="height:50px;width:50px;" uib-tooltip-html="talent.HtmlToolTip" tooltip-placement="bottom" ng-click="vm.select(talent, vm.hero.TalentTreeArray)" ng-class="{ 'talentactive': talent.active }" />
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-sm-12">
                 <p>
-                    Level 13<br />
-                    {{vm.lvl13}}
+                    <b>Level 13</b> {{vm.lvl13}}
                 </p>
             </div>
-            <div class="col-md-2" ng-repeat="talent in vm.hero.TalentTreeArray | filter:{Tier: 5} : true  track by $index">
+        </div>
+        <div class="row">
+            <div class="col-sm-2 col-sm-push-2" ng-repeat="talent in vm.hero.TalentTreeArray | filter:{Tier: 5} : true  track by $index">
                 <img class="img-thumbnail" src="{{talent.Img}}" style="height:50px;width:50px;" uib-tooltip-html="talent.HtmlToolTip" tooltip-placement="bottom" ng-click="vm.select(talent, vm.hero.TalentTreeArray)" ng-class="{ 'talentactive': talent.active }" />
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-sm-12">
                 <p>
-                    Level 16<br />
-                    {{vm.lvl16}}
+                    <b>Level 16</b> {{vm.lvl16}}
                 </p>
             </div>
-            <div class="col-md-2" ng-repeat="talent in vm.hero.TalentTreeArray | filter:{Tier: 6} : true  track by $index">
+        </div>
+        <div class="row">
+            <div class="col-sm-2 col-sm-push-2" ng-repeat="talent in vm.hero.TalentTreeArray | filter:{Tier: 6} : true  track by $index">
                 <img class="img-thumbnail" src="{{talent.Img}}" style="height:50px;width:50px;" uib-tooltip-html="talent.HtmlToolTip" tooltip-placement="bottom" ng-click="vm.select(talent, vm.hero.TalentTreeArray)" ng-class="{ 'talentactive': talent.active }" />
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-sm-12">
                 <p>
-                    Level 20<br />
-                    {{vm.lvl20}}
+                    <b>Level 20</b> {{vm.lvl20}}
                 </p>
             </div>
-            <div class="col-md-2" ng-repeat="talent in vm.hero.TalentTreeArray | filter:{Tier: 7} : true  track by $index">
+        </div>
+        <div class="row">
+            <div class="col-sm-2 col-sm-push-2" ng-repeat="talent in vm.hero.TalentTreeArray | filter:{Tier: 7} : true  track by $index">
                 <img class="img-thumbnail" src="{{talent.Img}}" style="height:50px;width:50px;" uib-tooltip-html="talent.HtmlToolTip" tooltip-placement="bottom" ng-click="vm.select(talent, vm.hero.TalentTreeArray)" ng-class="{ 'talentactive': talent.active }" />
             </div>
         </div>
-        <!--<div class="row" ng-repeat="talent in vm.hero.TalentTreeArray">
-            {{talent.Name}} | {{talent.Icon}}
-        </div>-->
 </div>
 <div class="modal-footer">
     <button type="button" class="btn"
